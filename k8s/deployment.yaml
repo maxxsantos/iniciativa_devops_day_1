@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day_1
+spec:
+  selector:
+    matchLabels:
+      app: day_1
+  template:
+    metadata:
+      labels:
+        app: day_1
+    spec:
+      containers:
+        - name: day_1
+          image: maxxsantos/iniciativa_devops_day_1:v1
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: day_1
+spec:
+  selector:
+    app: day_1
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 32000
+  type: NodePort
